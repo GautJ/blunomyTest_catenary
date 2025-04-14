@@ -8,7 +8,8 @@ def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, name, sho
     for cluster_id, data in cluster_curves.items():
         curve_3d = data["fitted_curve"]
         original = data["original_points"]
-
+        
+        # Possibility to not show the points but only the fitted curve
         if show_points:
             ax.scatter(original[:, 0], original[:, 1], original[:, 2], s=5, alpha=0.2)
 
