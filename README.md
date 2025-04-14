@@ -56,7 +56,7 @@ The pipeline is as follows:
 
 ---
 
-## How to run ?
+## How to run
 
 1. Place your .parquet files in the datasets/ folder.
 2. Run the main script as a module from the project root: **python -m catenary_fitting.main**
@@ -64,5 +64,7 @@ The pipeline is as follows:
 This will generate your outputs inside the 'output/' directory, which contains:
     - static_figures/: Static 3D plots (.png)
     - interactive_figures/: Interactive 3D visualizations (.html)
+
+To view the interactive plots (`.html`), simply download them from the repository and open them in your browser by dragging and dropping the files.
 
 Each plot shows the original LiDAR points, clustered per wire, along with the corresponding catenary curve fitting 😄
