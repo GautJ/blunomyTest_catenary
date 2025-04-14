@@ -39,22 +39,20 @@ The pipeline is as follows:
 
 ## Project Structure
 
-blunomy-wire-detection/
-├── catenary_fitting/               # Python package containing all main code
-│   ├── __init__.py                 # Makes this folder a Python package
-│   ├── main.py                     # Entry point to run the full pipeline
-│   ├── clustering.py               # Handles PCA + DBSCAN-based clustering
-│   ├── fitting.py                  # Catenary model fitting and 3D projection
-│   ├── visualization.py            # 3D plotting of clusters and fitted curves
-│   └── utils.py                    # Utility functions for saving plots and files
-├── datasets/                       # Folder for input .parquet LiDAR point cloud files
-├── output/
-│   ├── static_figures/             # Saved static 3D visualizations (.png)
-│   └── interactive_figures/        # Saved interactive 3D plots (.html)
-├── requirements.txt                # Python package dependencies
-├── .gitignore                      # Files to ignore in Git
-└── README.md                       # Project description and usage instructions
-
+- catenary_fitting/           # Python package with the main pipeline code
+   - __init__.py                   # Marks the folder as a Python package
+   - main.py                       # Entry point to run the full pipeline
+   - clustering.py                 # PCA + DBSCAN clustering logic
+   - fitting.py                    # Catenary fitting and 3D reprojection
+   - visualization.py              # 3D plotting of clusters and fits
+   - utils.py                      # Helpers for saving files and plots
+- datasets/                   # Folder for input .parquet LiDAR files
+- output/                     # Folder for all generated outputs
+   - static_figures/               # Saved static 3D plots (.png)
+   - interactive_figures/          # Saved interactive 3D plots (.html)
+- requirements.txt            # Python dependencies
+- .gitignore                  # Files to exclude from version control
+- README.md                   # Project documentation and instructions
 
 ---
 
