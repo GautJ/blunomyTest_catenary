@@ -59,11 +59,14 @@ The pipeline is as follows:
 ## How to run
 
 1. Place your .parquet files in the datasets/ folder.
-2. Run the main script as a module from the project root: **python -m catenary_fitting.main**
+2. Run the main script as a module from the project root:
+
+<pre>-m catenary_fitting.main</pre>
 
 This will generate your outputs inside the 'output/' directory, which contains:
-    - static_figures/: Static 3D plots (.png)
-    - interactive_figures/: Interactive 3D visualizations (.html)
+    
+    - 'static_figures/': Static 3D plots (.png)
+    - 'interactive_figures/': Interactive 3D visualizations (.html)
 
 To view the interactive plots (`.html`), simply download them from the repository and open them in your browser by dragging and dropping the files.
 
