@@ -2,7 +2,7 @@ from sklearn.cluster import DBSCAN
 from sklearn.decomposition import PCA
 
 # Apply PCA to determine the principal directions of variation in the 3D point cloud.
-# Use DBSCAN on a selected PCA component (typically PC1 or PC2) where wires are best separated.
+# Use DBSCAN on a selected PCA component (here PC1 or PC2) where wires are best separated.
 # This effectively reduces the 3D clustering problem to a 1D density problem along a meaningful axis.
 # Note: We keep 3 PCA components to handle datasets like 'medium', where the wire alignment is non-standard
 # and the best separation may lie along PC2 or PC3 (not just PC1).

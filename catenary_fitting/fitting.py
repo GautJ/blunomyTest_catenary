@@ -20,33 +20,34 @@ def fit_catenary(x, z):
     return x0_z0_c  # [x0, z0, c]
 
 
-# Project a 3D cluster to 2D using PCA to have a plane where the curve of the wire is clearly seen from its side
+# Flatten the 3D wire cluster to 2D using PCA — gives a side-on view where the curve shape is easiest to spot
 def project_cluster_to_2D(X_3D):
-    pca = PCA(n_components=2) # Only 2 components here, because the principal components of variation are the x,z coordinates in the plane where y is fixed!
+    pca = PCA(n_components=2) # 2 components since most variation is in the x-z plane; y doesn't change much
     projected = pca.fit_transform(X_3D)
     return projected, pca
 
-# Fit catenary for each cluster and reproject back to 3D 
+# Fit catenary for each cluster and reproject the result into the original 3D space
 def fit_catenaries_3D(data):
     cluster_curves = {}
     clusters = np.unique(data['cluster'])
     for cluster in tqdm(clusters, desc="Fitting catenaries"):
         cluster_xyz = data[data['cluster'] == cluster][['x', 'y', 'z']].values
 
-        # Project in 2D plane (x,z with y fixed)
+        # Flatten the 3D cluster to 2D (PCA gives a side view, usually x-z plane, bowl-shaped curve)
         projected_2D, pca = project_cluster_to_2D(cluster_xyz)
         x_proj, z_proj = projected_2D[:, 0], projected_2D[:, 1]
 
         try:
-            # Fit catenary in the 2D plane given by PCA (x_proj, z_proj)
+            # Fit a catenary curve in the 2D PCA plane (x_proj, z_proj)
             params = fit_catenary(x_proj, z_proj)
             x_fit = np.linspace(x_proj.min(), x_proj.max(), 300)
-            z_fit = catenary(x_fit, *params) # *params -> x0, z0, c
-            fitted_2D = np.column_stack((x_fit, z_fit)) # 2D array of x_fit and z_fit coordinate that is used for projecting back in 3D
+            z_fit = catenary(x_fit, *params) # params = (x0, z0, c)
+            fitted_2D = np.column_stack((x_fit, z_fit)) # Combine x_fit and z_fit into a 2D curve
 
-            # Project back to 3D
-            fitted_3D = pca.inverse_transform(fitted_2D) # Gives the fitting curve in the initial 3D space
+            # Reproject the 2D fit back into 3D using the inverse PCA transform
+            fitted_3D = pca.inverse_transform(fitted_2D) 
 
+            # Store both the fitted 3D curve and the original cluster points for later visualization
             cluster_curves[cluster] = {
                 "fitted_curve": fitted_3D,
                 "original_points": cluster_xyz,
