@@ -50,6 +50,10 @@ def main():
         else:
             data['cluster'] = pca_and_dbscan_clustering(data[['x', 'y', 'z']], eps, min_samples, 1)
 
+        unique_clusters = set(data['cluster'])
+        num_wires = len(unique_clusters - {-1})  # Remove noise label if present
+        print(f"Dataset '{name}': Detected {num_wires} wires")
+
     # Save the plots in the output directory (static, and interactive)
     for data, name in zip(datasets, names):
         filenameStatic = f"static_fittedCatenaries_{name}.png"

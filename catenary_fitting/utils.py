@@ -23,6 +23,16 @@ def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, name, sho
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
     ax.legend()
+
+    # Count number of wires (clusters)
+    num_clusters = len(cluster_curves)
+
+    # Add an annotation box showing total wires
+    textstr = f'Total wires: {num_clusters}'
+    props = dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8)
+    ax.text2D(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=10,
+            verticalalignment='top', bbox=props)
+    
     plt.tight_layout()
     plt.savefig(output_path)
     print(f"Saved static plot to {output_path}")
@@ -48,6 +58,25 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, name, show_poin
             name=f"Cluster {cluster_id}"
         ))
     
+        num_clusters = len(cluster_curves)
+
+    # Add a box with the total number of wires
+    fig.add_annotation(
+        dict(
+            showarrow=False,
+            text=f"<b>Total wires: {num_clusters}</b>",
+            x=0.01,
+            y=0.99,
+            xref="paper",
+            yref="paper",
+            font=dict(size=14, color="black"),
+            bgcolor="white",
+            bordercolor="black",
+            borderwidth=1,
+            opacity=0.9
+        )
+    )
+
     fig.update_layout(
         scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z'),
         title=title,

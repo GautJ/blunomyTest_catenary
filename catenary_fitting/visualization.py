@@ -47,5 +47,15 @@ def plot_3D_fitted_catenaries(cluster_curves, title, show_points=True):
     ax.set_ylabel("Y")
     ax.set_zlabel("Z")
     ax.legend()
+
+    # Count number of wires (clusters)
+    num_clusters = len(cluster_curves)
+
+    # Add a box with the total number of wires
+    textstr = f'Total wires: {num_clusters}'
+    props = dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8)
+    ax.text2D(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=10,
+            verticalalignment='top', bbox=props)
+    
     plt.tight_layout()
     plt.show()
