@@ -2,6 +2,16 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
 def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, show_points=True):
+    """
+    Saves a static 3D plot of the fitted catenaries to a PNG file.
+
+    Parameters:
+        cluster_curves (dict): Fitted curves per cluster, and original points.
+        output_path (str): File path to save the PNG.
+        title (str): Title of the plot.
+        name (str): Dataset name.
+        show_points (bool): If True, show original points too.
+    """
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
 
@@ -39,6 +49,16 @@ def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, show_poin
     print(f"Saved static plot to {output_path}")
 
 def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=True):
+    """
+        Saves an interactive 3D Plotly figure of the catenary fits.
+
+        Parameters:
+            cluster_curves (dict): Fitted curves per cluster, and original points.
+            output_path (str): File path to save the HTML.
+            title (str): Title for the figure.
+            name (str): Dataset name.
+            show_points (bool): If True, include original point cloud.
+        """
     fig = go.Figure()
 
     for cluster_id, data in cluster_curves.items():
@@ -58,7 +78,7 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
             line=dict(width=4),
             name=f"Cluster {cluster_id}"
         ))
-    
+
         num_clusters = len(cluster_curves)
 
     # Add a box with the total number of wires

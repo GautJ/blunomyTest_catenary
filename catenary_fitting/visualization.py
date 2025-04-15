@@ -3,6 +3,14 @@ import matplotlib.cm as cm
 
 # Helper function that allow a 3D visualization of the (x,y,z) points
 def visualize_point_cloud_3d(data, label_col=None, title="3D Point Cloud"):
+    """
+    Plots a 3D scatter of the point cloud, optionally colored by cluster.
+
+    Parameters:
+        data (DataFrame): Point cloud data with x, y, z.
+        label_col (str): Optional column to color by (e.g., 'cluster').
+        title (str): Plot title.
+    """
     fig = plt.figure(figsize=(10, 7))
     ax = fig.add_subplot(111, projection='3d')
 
@@ -26,6 +34,14 @@ def visualize_point_cloud_3d(data, label_col=None, title="3D Point Cloud"):
 
 # --- Visualization ---
 def plot_3D_fitted_catenaries(cluster_curves, title, show_points=True):
+    """
+    Plots fitted catenary curves (and optionally original points) in 3D.
+
+    Parameters:
+        cluster_curves (dict): Output from fit_catenaries_3D().
+        title (str): Title of the plot.
+        show_points (bool): If True, show original points.
+    """
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
 
