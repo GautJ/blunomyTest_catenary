@@ -71,7 +71,9 @@ This will generate your outputs inside the 'output/' directory, which contains:
 
 To view the interactive plots (`.html`), simply download them from the repository and open them in your browser by dragging and dropping the files.
 
+Each plot shows the original LiDAR points, clustered per wire, along with the corresponding catenary curve fitting 😄
+
+NOTE:
 To run tests using pytest you should write: 
 <pre>PYTHONPATH=. pytest tests/</pre>
 
-Each plot shows the original LiDAR points, clustered per wire, along with the corresponding catenary curve fitting 😄
