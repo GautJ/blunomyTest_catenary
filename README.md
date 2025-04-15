@@ -50,6 +50,7 @@ The pipeline is as follows:
 - output/                     # Folder for all generated outputs
    - static_figures/               # Saved static 3D plots (.png)
    - interactive_figures/          # Saved interactive 3D plots (.html)
+- tests/                      # Tests to ensure the important functions work correctly
 - requirements.txt            # Python dependencies
 - .gitignore                  # Files to exclude from version control
 - README.md                   # Project documentation and instructions
@@ -65,9 +66,12 @@ The pipeline is as follows:
 
 This will generate your outputs inside the 'output/' directory, which contains:
     
-    - 'static_figures/': Static 3D plots (.png)
-    - 'interactive_figures/': Interactive 3D visualizations (.html)
+- 'static_figures/': Static 3D plots (.png)
+- 'interactive_figures/': Interactive 3D visualizations (.html)
 
 To view the interactive plots (`.html`), simply download them from the repository and open them in your browser by dragging and dropping the files.
+
+To run tests using pytest you should write: 
+<pre>PYTHONPATH=. pytest tests/</pre>
 
 Each plot shows the original LiDAR points, clustered per wire, along with the corresponding catenary curve fitting 😄
