@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 
-def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, name, show_points=True):
+def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, show_points=True):
     fig = plt.figure(figsize=(12, 8))
     ax = fig.add_subplot(111, projection='3d')
 
@@ -38,7 +38,7 @@ def save_plot_3D_fitted_catenaries(cluster_curves, output_path, title, name, sho
     plt.savefig(output_path)
     print(f"Saved static plot to {output_path}")
 
-def save_interactive_3D_plot(cluster_curves, output_path, title, name, show_points=True):
+def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=True):
     fig = go.Figure()
 
     for cluster_id, data in cluster_curves.items():
