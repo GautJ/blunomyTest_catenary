@@ -71,7 +71,7 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
         curve = data["fitted_curve"]
         points = data["original_points"]
 
-        # Original (no color)
+        # Original points (no color)
         orig = go.Scatter3d(
             x=points[:, 0], y=points[:, 1], z=points[:, 2],
             mode='markers',
@@ -81,7 +81,7 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
         )
         all_original_points.append(orig)
 
-        # Clustered (with label color)
+        # Points clustered with PCA + DBSCAN (with label color)
         cluster = go.Scatter3d(
             x=points[:, 0], y=points[:, 1], z=points[:, 2],
             mode='markers',
@@ -91,7 +91,7 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
         )
         all_clustered_points.append(cluster)
 
-        # Fitted curve
+        # Fitted curves (catenary)
         curve_line = go.Scatter3d(
             x=curve[:, 0], y=curve[:, 1], z=curve[:, 2],
             mode='lines',
@@ -105,10 +105,9 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
     for trace in all_original_points + all_clustered_points + all_fitted_curves:
         fig.add_trace(trace)
 
-    total_clusters = len(cluster_curves)
+    n = len(cluster_curves)
 
     # Trace visibility order: [originals, clusters, curves]
-    n = total_clusters
     total_traces = 3 * n
 
     # Buttons setup
@@ -131,6 +130,7 @@ def save_interactive_3D_plot(cluster_curves, output_path, title, show_points=Tru
                    {"title": f"{title} - Showing All"}])
     ]
 
+    # Layout parameters
     fig.update_layout(
         updatemenus=[dict(
             type="buttons",
